@@ -3,5 +3,5 @@
 This is intended as a Java replacement for the older Perl Tasklogs project.
 
 Resources:
-* [Tasklogs (Perl)](/jonwarren/tasklogs)
+* [Tasklogs -- Perl version (on GitHub)](https://github.com/jonwarren/tasklogs)
 
