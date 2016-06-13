@@ -1,0 +1,72 @@
+{"properties": [
+  {
+    "name": "dev.heroku.key",
+    "type": "java.lang.String",
+    "description": "A description for 'heroku.key'"
+  },
+  {
+    "name": "dev.database.name",
+    "type": "java.lang.String",
+    "description": "database name"
+  },
+  {
+    "name": "dev.database.type",
+    "type": "java.lang.String",
+    "description": "database type (mysql, postgres, etc.)"
+  },
+  {
+    "name": "dev.database.host",
+    "type": "java.lang.String",
+    "description": "database host address (ip or dns name)"
+  },
+  {
+    "name": "dev.database.port",
+    "type": "java.lang.String",
+    "description": "database port"
+  },
+  {
+    "name": "dev.database.username",
+    "type": "java.lang.String",
+    "description": "database username"
+  },
+  {
+    "name": "dev.database.password",
+    "type": "java.lang.String",
+    "description": "database password"
+  },
+  {
+    "name": "prod.heroku.key",
+    "type": "java.lang.String",
+    "description": "A description for 'heroku.key'"
+  },
+  {
+    "name": "prod.database.name",
+    "type": "java.lang.String",
+    "description": "database name"
+  },
+  {
+    "name": "prod.database.type",
+    "type": "java.lang.String",
+    "description": "database type (mysql, postgres, etc.)"
+  },
+  {
+    "name": "prod.database.host",
+    "type": "java.lang.String",
+    "description": "database host address (ip or dns name)"
+  },
+  {
+    "name": "prod.database.port",
+    "type": "java.lang.String",
+    "description": "database port"
+  },
+  {
+    "name": "prod.database.username",
+    "type": "java.lang.String",
+    "description": "database username"
+  },
+  {
+    "name": "prod.database.password",
+    "type": "java.lang.String",
+    "description": "database password"
+  }
+]}
