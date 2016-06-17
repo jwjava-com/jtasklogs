@@ -1,5 +1,7 @@
 package info.jonwarren.tasklogs.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,21 +29,36 @@ public class TaskController {
     public String getAllTasks(Model model) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("list of tasks go here...");
+        List<Task> tasks = (List<Task>) taskRepository.findAll();
+        if (tasks != null && !tasks.isEmpty()) {
+            sb.append("Found these tasks:");
+            tasks.forEach(task -> sb.append(task));
+        } else {
+            sb.append("No tasks were found");
+        }
 
         return sb.toString();
     }
 
     @RequestMapping("/{name}")
     @ResponseBody
-    public Task getByName(@PathVariable String name) {
+    public String getByName(@PathVariable String name) {
+        StringBuilder sb = new StringBuilder();
         Task task = null;
+
         try {
             task = taskRepository.findByName(name);
         } catch (Exception e) {
             //TODO: handle exception
         }
-        return task;
+
+        if (task != null) {
+            sb.append("Found task [").append(task).append("]");
+        } else {
+            sb.append("Couldn't find task with name '").append(name).append("'");
+        }
+
+        return sb.toString();
     }
 
     @RequestMapping("/{name}/create")
@@ -93,26 +110,35 @@ public class TaskController {
             .append(" task [").append(task).append("]")
             .append(" with entry [").append(entry).append("]");
             //@formatter:on
+        } else {
+            sb.append("Could not start task with name '").append(name).append("'");
         }
 
         return sb.toString();
     }
 
-    //TODO: finish implementing this, but change name to id or add a way to find current tasks
-//    @RequestMapping("/{name}/stop")
-//    @ResponseBody
-//    public String stopTask(@PathVariable String name) {
-//        StringBuilder sb = new StringBuilder();
-//        Task task = null;
-//        Entry entry = null;
-//        
-//        try {
-//            task = taskRepository.findByName(name);
-//            if (task != null) {
-//            }
-//        }
-//        
-//        return sb.toString();
-//    }
-    
+    //TODO: decide if this belongs here or only in EntryController
+    @RequestMapping("/{id}/stop")
+    @ResponseBody
+    public String stopTask(@PathVariable Long id) {
+        StringBuilder sb = new StringBuilder();
+        Entry entry = null;
+
+        try {
+            entry = entryRepository.findOne(id);
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+
+        if (entry != null) {
+            //@formatter:off
+            sb.append("Stopped entry with id '").append(id).append("'")
+            .append(" for task named '").append(entry.getTask().getName()).append("'");
+            //@formatter:on
+        } else {
+            sb.append("");
+        }
+        return sb.toString();
+    }
+
 }
