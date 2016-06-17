@@ -1,6 +1,6 @@
 package info.jonwarren.tasklogs.model;
 
-import java.util.Date;
+import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -21,14 +22,15 @@ public class UserDay {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @NotNull
-    @Column(name = "start_time")
-    private Date startTime;
+    @Column(name = "start_ts")
+    private Instant startTime;
 
-    @Column(name = "stop_time")
-    private Date stopTime;
+    @Column(name = "stop_ts")
+    private Instant stopTime;
 
     @NotNull
     @Column(name = "billable_total")
@@ -41,7 +43,7 @@ public class UserDay {
     public UserDay() {
     }
 
-    public UserDay(User user, Date startTime, Date stopTime, Double billableTotal, Double nonbillableTotal) {
+    public UserDay(User user, Instant startTime, Instant stopTime, Double billableTotal, Double nonbillableTotal) {
         setUser(user);
     }
 
@@ -61,19 +63,19 @@ public class UserDay {
         this.user = user;
     }
 
-    public Date getStartTime() {
+    public Instant getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Instant startTime) {
         this.startTime = startTime;
     }
 
-    public Date getStopTime() {
+    public Instant getStopTime() {
         return stopTime;
     }
 
-    public void setStopTime(Date stopTime) {
+    public void setStopTime(Instant stopTime) {
         this.stopTime = stopTime;
     }
 
