@@ -1,6 +1,6 @@
 package info.jonwarren.tasklogs.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ public class TaskTotalDay {
 
     @NotNull
     @Column(name = "totals_date")
-    private Date date;
+    private LocalDate date;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "task_id")
@@ -33,6 +33,7 @@ public class TaskTotalDay {
     private Double total;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     TaskTotalDay() {
@@ -42,7 +43,7 @@ public class TaskTotalDay {
         setId(id);
     }
 
-    TaskTotalDay(Date date, Task task, Double total) {
+    TaskTotalDay(LocalDate date, Task task, Double total) {
         setDate(date);
         setTask(task);
         setTotal(total);
@@ -56,11 +57,11 @@ public class TaskTotalDay {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
