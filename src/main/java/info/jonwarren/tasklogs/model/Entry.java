@@ -1,6 +1,6 @@
 package info.jonwarren.tasklogs.model;
 
-import java.util.Date;
+import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,13 +26,14 @@ public class Entry {
     private Task task;
 
     @NotNull
-    @Column(name = "start_time")
-    private Date startTime;
-    
-    @Column(name="stop_time")
-    private Date stopTime;
-    
-    @ManyToOne(fetch=FetchType.LAZY)
+    @Column(name = "start_ts")
+    private Instant startTime;
+
+    @Column(name = "stop_ts")
+    private Instant stopTime;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Entry() {
@@ -44,10 +45,10 @@ public class Entry {
 
     public Entry(Task task) {
         setTask(task);
-        setStartTime(new Date());
+        setStartTime(Instant.now());
     }
 
-    public Entry(Task task, Date startTime) {
+    public Entry(Task task, Instant startTime) {
         setTask(task);
         setStartTime(startTime);
     }
@@ -68,19 +69,19 @@ public class Entry {
         this.task = task;
     }
 
-    public Date getStartTime() {
+    public Instant getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Instant startTime) {
         this.startTime = startTime;
     }
 
-    public Date getStopTime() {
+    public Instant getStopTime() {
         return stopTime;
     }
 
-    public void setStopTime(Date stopTime) {
+    public void setStopTime(Instant stopTime) {
         this.stopTime = stopTime;
     }
 
