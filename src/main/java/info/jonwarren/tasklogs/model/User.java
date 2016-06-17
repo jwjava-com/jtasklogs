@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "users")
+@Table(name = "task_users")
 public class User {
 
     @Id
@@ -21,7 +21,7 @@ public class User {
 
     @Column(name = "auth_source")
     private String authSource;
-
+    
     public User() {
     }
 
