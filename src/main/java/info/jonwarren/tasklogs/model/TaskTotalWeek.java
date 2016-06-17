@@ -1,6 +1,6 @@
 package info.jonwarren.tasklogs.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,9 +21,12 @@ public class TaskTotalWeek {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "start_date")
+    private LocalDate startDate;
+
     @NotNull
     @Column(name = "end_date")
-    private Date endDate;
+    private LocalDate endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "task_id")
@@ -33,6 +36,7 @@ public class TaskTotalWeek {
     private Double total;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public TaskTotalWeek() {
@@ -42,7 +46,15 @@ public class TaskTotalWeek {
         setId(id);
     }
 
-    public TaskTotalWeek(Date endDate, Task task, Double total) {
+    public TaskTotalWeek(LocalDate endDate, Task task, Double total) {
+        setStartDate(endDate.minusDays(7));
+        setEndDate(endDate);
+        setTask(task);
+        setTotal(total);
+    }
+
+    public TaskTotalWeek(LocalDate startDate, LocalDate endDate, Task task, Double total) {
+        setStartDate(startDate);
         setEndDate(endDate);
         setTask(task);
         setTotal(total);
@@ -56,11 +68,19 @@ public class TaskTotalWeek {
         this.id = id;
     }
 
-    public Date getEndDate() {
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
