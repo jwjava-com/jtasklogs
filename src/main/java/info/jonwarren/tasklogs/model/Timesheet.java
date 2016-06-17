@@ -1,6 +1,6 @@
 package info.jonwarren.tasklogs.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -22,11 +23,11 @@ public class Timesheet {
 
     @NotNull
     @Column(name = "start_date")
-    private Date startDate;
+    private LocalDate startDate;
 
     @NotNull
     @Column(name = "end_date")
-    private Date endDate;
+    private LocalDate endDate;
 
     @NotNull
     @Column(name = "billable_total")
@@ -37,6 +38,7 @@ public class Timesheet {
     private Double nonbillableTotal;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Timesheet() {
@@ -46,7 +48,7 @@ public class Timesheet {
         setId(id);
     }
 
-    public Timesheet(Date endDate, Double billableTotal, Double nonbillableTotal) {
+    public Timesheet(LocalDate endDate, Double billableTotal, Double nonbillableTotal) {
         setEndDate(endDate);
         setBillableTotal(nonbillableTotal);
         setNonbillableTotal(nonbillableTotal);
@@ -60,19 +62,19 @@ public class Timesheet {
         this.id = id;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
