@@ -59,9 +59,9 @@ public class TasklogsApplication extends WebSecurityConfigurerAdapter {
     @Autowired
     OAuth2ClientContext oauth2ClientContext;
 
-//    public static void main(String[] args) {
-//        SpringApplication.run(TasklogsApplication.class, args);
-//    }
+    public static void main(String[] args) {
+        SpringApplication.run(TasklogsApplication.class, args);
+    }
 
     @RequestMapping({ "/user", "/me" })
     public Map<String, String> user(Principal principal) {
@@ -69,24 +69,6 @@ public class TasklogsApplication extends WebSecurityConfigurerAdapter {
         map.put("name", principal.getName());
         return map;
     }
-
-//    @RequestMapping("/")
-//    public String home(Model model) {
-//        StringBuilder sb = new StringBuilder();
-//
-//        sb.append("You are at the start of this whole app.");
-//
-//        return sb.toString();
-//    }
-//
-//    @RequestMapping("/login")
-//    public String login(Model model) {
-//        StringBuilder sb = new StringBuilder();
-//
-//        sb.append("What? You wanna log in to this or something? Good luck with that!");
-//
-//        return sb.toString();
-//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -101,10 +83,6 @@ public class TasklogsApplication extends WebSecurityConfigurerAdapter {
             .and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class)
             .addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);
         // @formatter:on
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(TasklogsApplication.class, args);
     }
 
     @Configuration
