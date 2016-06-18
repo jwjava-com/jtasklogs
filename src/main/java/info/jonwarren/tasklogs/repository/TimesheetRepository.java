@@ -1,6 +1,6 @@
 package info.jonwarren.tasklogs.repository;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -13,10 +13,10 @@ import info.jonwarren.tasklogs.model.User;
 @Transactional
 public interface TimesheetRepository extends CrudRepository<Timesheet, Long> {
 
-    public Timesheet findByEndDate(Date date);
+    public Timesheet findByEndDate(LocalDate date);
 
     public List<Timesheet> findAllByUser(User user);
 
-    public List<Timesheet> findAllByEndDate(Date endDate);
+    public List<Timesheet> findAllByEndDate(LocalDate endDate);
 
 }

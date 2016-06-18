@@ -1,6 +1,6 @@
 package info.jonwarren.tasklogs.repository;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -15,11 +15,11 @@ import info.jonwarren.tasklogs.model.User;
 public interface EntryRepository extends CrudRepository<Entry, Long> {
 
     public List<Entry> findAllByTask(Task task);
-    
-    public List<Entry> findAllByStartTime(Date startTime);
 
-    public List<Entry> findAllByStopTime(Date stopTime);
-    
+    public List<Entry> findAllByStartTime(Instant startTime);
+
+    public List<Entry> findAllByStopTime(Instant stopTime);
+
     public List<Entry> findAllByUser(User user);
 
 }

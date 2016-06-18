@@ -1,6 +1,6 @@
 package info.jonwarren.tasklogs.repository;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
@@ -13,8 +13,8 @@ public interface UserDayRepository extends CrudRepository<UserDay, Long> {
 
     public List<UserDay> findAllByUser(User user);
 
-    public List<Entry> findAllByStartTime(Date startTime);
+    public List<Entry> findAllByStartTime(Instant startTime);
 
-    public List<Entry> findAllByStopTime(Date stopTime);
+    public List<Entry> findAllByStopTime(Instant stopTime);
 
 }
