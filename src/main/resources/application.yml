@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: tasklogs
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+  resources:
+    chain:
+      enabled: true
+security:
+  oauth2:
+    client:
+      client-id: acme
+      client-secret: acmesecret
+      scope: read,write
+      auto-approve-scopes: .*
+facebook:
+  client:
+    clientId: ${FACEBOOK_CLIENTID}
+    clientSecret: ${FACEBOOK_CLIENTSECRET}
+    accessTokenUri: https://graph.facebook.com/oauth/access_token
+    userAuthorizationUri: https://www.facebook.com/dialog/oauth
+    tokenName: oauth_token
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://graph.facebook.com/me
+twitter:
+  client:
+    clientId: ${TWITTER_CLIENTID}
+    clientSecret: ${TWITTER_CLIENTSECRET}
+    accessTokenUri: https://api.twitter.com/oauth/access_token
+    userAuthorizationUri: https://api.twitter.com/oauth/authorize
+    tokenName: oauth_token
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://api.twitter.com/1.1/account/settings.json
+github:
+  client:
+    clientId: ${GITHUB_CLIENTID}
+    clientSecret: ${GITHUB_CLIENTSECRET}
+    accessTokenUri: https://github.com/login/oauth/access_token
+    userAuthorizationUri: https://github.com/login/oauth/authorize
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://api.github.com/user
