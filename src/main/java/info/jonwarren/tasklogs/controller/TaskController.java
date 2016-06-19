@@ -44,6 +44,14 @@ public class TaskController {
         } else {
             sb.append("No tasks were found for user [").append(user).append("]");
         }
+        
+        tasks = (List<Task>) taskRepository.findAll();
+        if (tasks != null && !tasks.isEmpty()) {
+            sb.append("Found these tasks:");
+            tasks.forEach(task -> sb.append(task));
+        } else {
+            sb.append("No tasks were found.");
+        }
 
         return sb.toString();
     }
