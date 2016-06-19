@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import info.jonwarren.tasklogs.model.Entry;
 import info.jonwarren.tasklogs.model.User;
 import info.jonwarren.tasklogs.repository.EntryRepository;
+import info.jonwarren.tasklogs.repository.UserRepository;
 import info.jonwarren.tasklogs.service.UserService;
 
 @RestController
@@ -21,7 +22,10 @@ public class EntryController {
     @Autowired
     private EntryRepository entryRepository;
 
-    private UserService userService = new UserService();
+    @Autowired
+    private UserRepository userRepository;
+
+    private UserService userService = new UserService(userRepository);
 
     @RequestMapping(value = "/")
     @ResponseBody

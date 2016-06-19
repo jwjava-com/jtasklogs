@@ -1,6 +1,5 @@
 package info.jonwarren.tasklogs.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -9,10 +8,10 @@ import info.jonwarren.tasklogs.repository.UserRepository;
 
 public class UserService {
 
-    @Autowired
     private UserRepository userRepository;
 
-    public UserService() {
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public User getCurrentUser() {
