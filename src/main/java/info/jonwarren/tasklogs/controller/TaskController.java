@@ -208,6 +208,7 @@ public class TaskController {
         User user = userRepository.findByName(username);
         if (user == null) {
             user = new User(username);
+            userRepository.save(user);
         }
 
         return user;
