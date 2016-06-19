@@ -57,9 +57,9 @@ public class TaskController {
 
         try {
             task = taskRepository.findByName(name);
-            if (!task.getUser().equals(user)) {
-                task = null; // prevent finding another user's task
-            }
+//            if (!task.getUser().equals(user)) {
+//                task = null; // prevent finding another user's task
+//            }
         } catch (Exception e) {
             //TODO: handle exception
         }
@@ -86,9 +86,9 @@ public class TaskController {
 
         try {
             task = taskRepository.findByName(name);
-            if (!task.getUser().equals(user)) {
-                task = null; // prevent finding another user's task
-            }
+//            if (!task.getUser().equals(user)) {
+//                task = null; // prevent finding another user's task
+//            }
 
             if (task == null) {
                 isNewTask = true;
@@ -133,9 +133,9 @@ public class TaskController {
 
         try {
             task = taskRepository.findByName(name);
-            if (!task.getUser().equals(user)) {
-                task = null; // prevent starting another user's task
-            }
+//            if (!task.getUser().equals(user)) {
+//                task = null; // prevent starting another user's task
+//            }
 
             if (task == null) {
                 isNewTask = true;
@@ -178,9 +178,9 @@ public class TaskController {
 
         try {
             entry = entryRepository.findOne(id);
-            if (!entry.getUser().equals(user)) {
-                entry = null; // prevent stopping another user's entry
-            }
+//            if (!entry.getUser().equals(user)) {
+//                entry = null; // prevent stopping another user's entry
+//            }
         } catch (Exception e) {
             //TODO: handle exception
         }
