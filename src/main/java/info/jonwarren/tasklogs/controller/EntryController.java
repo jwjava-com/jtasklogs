@@ -52,9 +52,9 @@ public class EntryController {
 
         try {
             entry = entryRepository.findOne(id);
-//            if (!entry.getUser().equals(user)) {
-//                entry = null; // prevent stopping another user's entry
-//            }
+            if (!entry.getUser().equals(user)) {
+                entry = null; // prevent stopping another user's entry
+            }
         } catch (Exception e) {
             //TODO: handle exception
         }
