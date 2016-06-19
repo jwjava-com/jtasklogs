@@ -25,13 +25,11 @@ public class EntryController {
     @Autowired
     private UserRepository userRepository;
 
-    private UserService userService = new UserService(userRepository);
-
     @RequestMapping(value = "/")
     @ResponseBody
     public String getAllEntries(Model model) {
         StringBuilder sb = new StringBuilder();
-        User user = userService.getCurrentUser();
+        User user = UserService.getCurrentUser(userRepository);
 
         List<Entry> entries = null;
         entries = (List<Entry>) entryRepository.findAllByUser(user);
@@ -49,7 +47,7 @@ public class EntryController {
     @ResponseBody
     public String stopTask(@PathVariable Long id) {
         StringBuilder sb = new StringBuilder();
-        User user = userService.getCurrentUser();
+        User user = UserService.getCurrentUser(userRepository);
         Entry entry = null;
 
         try {

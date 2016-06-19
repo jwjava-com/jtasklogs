@@ -30,13 +30,11 @@ public class TaskController {
     @Autowired
     private UserRepository userRepository;
 
-    private UserService userService = new UserService(userRepository);
-
     @RequestMapping(value = "/")
     @ResponseBody
     public String getAllTasks(Model model) {
         StringBuilder sb = new StringBuilder();
-        User user = userService.getCurrentUser();
+        User user = UserService.getCurrentUser(userRepository);
 
         List<Task> tasks = null;
         tasks = (List<Task>) taskRepository.findAllByUser(user);
@@ -55,7 +53,7 @@ public class TaskController {
     public String getByName(@PathVariable String name) {
         StringBuilder sb = new StringBuilder();
         Task task = null;
-        User user = userService.getCurrentUser();
+        User user = UserService.getCurrentUser(userRepository);
 
         try {
             task = taskRepository.findByName(name);
@@ -82,7 +80,7 @@ public class TaskController {
     @ResponseBody
     public String createTask(@PathVariable String name) {
         StringBuilder sb = new StringBuilder();
-        User user = userService.getCurrentUser();
+        User user = UserService.getCurrentUser(userRepository);
         boolean isNewTask = false;
         Task task = null;
 
@@ -128,7 +126,7 @@ public class TaskController {
     @ResponseBody
     public String startTask(@PathVariable String name) {
         StringBuilder sb = new StringBuilder();
-        User user = userService.getCurrentUser();
+        User user = UserService.getCurrentUser(userRepository);
         Task task = null;
         boolean isNewTask = false;
         Entry entry = null;
@@ -175,7 +173,7 @@ public class TaskController {
     @ResponseBody
     public String stopTask(@PathVariable Long id) {
         StringBuilder sb = new StringBuilder();
-        User user = userService.getCurrentUser();
+        User user = UserService.getCurrentUser(userRepository);
         Entry entry = null;
 
         try {

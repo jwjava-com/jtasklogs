@@ -8,13 +8,7 @@ import info.jonwarren.tasklogs.repository.UserRepository;
 
 public class UserService {
 
-    private UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    public User getCurrentUser() {
+    public static User getCurrentUser(UserRepository userRepository) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         User user = userRepository.findByName(username);
