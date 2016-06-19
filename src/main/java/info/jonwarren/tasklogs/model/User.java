@@ -1,6 +1,5 @@
 package info.jonwarren.tasklogs.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,19 +18,11 @@ public class User {
     @NotNull
     private String name;
 
-    @Column(name = "auth_source")
-    private String authSource;
-    
     public User() {
     }
 
     public User(String name) {
         setName(name);
-    }
-
-    public User(String name, String authSource) {
-        setName(name);
-        setAuthSource(authSource);
     }
 
     public Long getId() {
@@ -50,22 +41,13 @@ public class User {
         this.name = name;
     }
 
-    public String getAuthSource() {
-        return authSource;
-    }
-
-    public void setAuthSource(String authSource) {
-        this.authSource = authSource;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
         //@formatter:off
         sb.append("id='").append(getId()).append("', ")
-        .append("name='").append(getName()).append("', ")
-        .append("authSource='").append(getAuthSource()).append("'");
+        .append("name='").append(getName()).append("'");
         //@formatter:on
 
         return sb.toString();
