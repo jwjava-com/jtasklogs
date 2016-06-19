@@ -3,8 +3,6 @@ package info.jonwarren.tasklogs.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +14,7 @@ import info.jonwarren.tasklogs.model.Task;
 import info.jonwarren.tasklogs.model.User;
 import info.jonwarren.tasklogs.repository.EntryRepository;
 import info.jonwarren.tasklogs.repository.TaskRepository;
-import info.jonwarren.tasklogs.repository.UserRepository;
+import info.jonwarren.tasklogs.service.UserService;
 
 @RestController
 @RequestMapping("/tasks")
@@ -28,14 +26,13 @@ public class TaskController {
     @Autowired
     private EntryRepository entryRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+    private UserService userService = new UserService();
 
     @RequestMapping(value = "/")
     @ResponseBody
     public String getAllTasks(Model model) {
         StringBuilder sb = new StringBuilder();
-        User user = getCurrentUser();
+        User user = userService.getCurrentUser();
 
         List<Task> tasks = null;
         tasks = (List<Task>) taskRepository.findAllByUser(user);
@@ -54,7 +51,7 @@ public class TaskController {
     public String getByName(@PathVariable String name) {
         StringBuilder sb = new StringBuilder();
         Task task = null;
-        User user = getCurrentUser();
+        User user = userService.getCurrentUser();
 
         try {
             task = taskRepository.findByName(name);
@@ -81,7 +78,7 @@ public class TaskController {
     @ResponseBody
     public String createTask(@PathVariable String name) {
         StringBuilder sb = new StringBuilder();
-        User user = getCurrentUser();
+        User user = userService.getCurrentUser();
         boolean isNewTask = false;
         Task task = null;
 
@@ -127,7 +124,7 @@ public class TaskController {
     @ResponseBody
     public String startTask(@PathVariable String name) {
         StringBuilder sb = new StringBuilder();
-        User user = getCurrentUser();
+        User user = userService.getCurrentUser();
         Task task = null;
         boolean isNewTask = false;
         Entry entry = null;
@@ -174,7 +171,7 @@ public class TaskController {
     @ResponseBody
     public String stopTask(@PathVariable Long id) {
         StringBuilder sb = new StringBuilder();
-        User user = getCurrentUser();
+        User user = userService.getCurrentUser();
         Entry entry = null;
 
         try {
@@ -199,19 +196,6 @@ public class TaskController {
             //@formatter:on
         }
         return sb.toString();
-    }
-
-    // TODO: move to a common class for reuse
-    private User getCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        User user = userRepository.findByName(username);
-        if (user == null) {
-            user = new User(username);
-            userRepository.save(user);
-        }
-
-        return user;
     }
 
 }

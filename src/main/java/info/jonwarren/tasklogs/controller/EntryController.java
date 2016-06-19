@@ -3,8 +3,6 @@ package info.jonwarren.tasklogs.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import info.jonwarren.tasklogs.model.Entry;
 import info.jonwarren.tasklogs.model.User;
 import info.jonwarren.tasklogs.repository.EntryRepository;
-import info.jonwarren.tasklogs.repository.UserRepository;
+import info.jonwarren.tasklogs.service.UserService;
 
 @RestController
 @RequestMapping("/entries")
@@ -23,14 +21,13 @@ public class EntryController {
     @Autowired
     private EntryRepository entryRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+    private UserService userService = new UserService();
 
     @RequestMapping(value = "/")
     @ResponseBody
     public String getAllEntries(Model model) {
         StringBuilder sb = new StringBuilder();
-        User user = getCurrentUser();
+        User user = userService.getCurrentUser();
 
         List<Entry> entries = null;
         entries = (List<Entry>) entryRepository.findAllByUser(user);
@@ -48,7 +45,7 @@ public class EntryController {
     @ResponseBody
     public String stopTask(@PathVariable Long id) {
         StringBuilder sb = new StringBuilder();
-        User user = getCurrentUser();
+        User user = userService.getCurrentUser();
         Entry entry = null;
 
         try {
@@ -73,19 +70,6 @@ public class EntryController {
             //@formatter:on
         }
         return sb.toString();
-    }
-
-    // TODO: move to a common class for reuse
-    private User getCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        User user = userRepository.findByName(username);
-        if (user == null) {
-            user = new User(username);
-            userRepository.save(user);
-        }
-
-        return user;
     }
 
 }
