@@ -45,14 +45,6 @@ public class TaskController {
             sb.append("No tasks were found for user [").append(user).append("]");
         }
 
-        tasks = (List<Task>) taskRepository.findAll();
-        if (tasks != null && !tasks.isEmpty()) {
-            sb.append("Found these tasks:");
-            tasks.forEach(task -> sb.append(task));
-        } else {
-            sb.append("No tasks were found.");
-        }
-
         return sb.toString();
     }
 
@@ -64,10 +56,7 @@ public class TaskController {
         User user = UserService.getCurrentUser(userRepository);
 
         try {
-            task = taskRepository.findByName(name);
-            if (!task.getUser().equals(user)) {
-                task = null; // prevent finding another user's task
-            }
+            task = taskRepository.findByNameAndUser(name, user);
         } catch (Exception e) {
             //TODO: handle exception
         }
@@ -93,10 +82,7 @@ public class TaskController {
         Task task = null;
 
         try {
-            task = taskRepository.findByName(name);
-            if (!task.getUser().equals(user)) {
-                task = null; // prevent finding another user's task
-            }
+            task = taskRepository.findByNameAndUser(name, user);
 
             if (task == null) {
                 isNewTask = true;
@@ -139,10 +125,7 @@ public class TaskController {
         Entry entry = null;
 
         try {
-            task = taskRepository.findByName(name);
-            if (!task.getUser().equals(user)) {
-                task = null; // prevent starting another user's task
-            }
+            task = taskRepository.findByNameAndUser(name, user);
 
             if (task == null) {
                 isNewTask = true;
