@@ -100,8 +100,7 @@ public class TaskController {
 
             if (task == null) {
                 isNewTask = true;
-                task = new Task(name);
-                task.setUser(user);
+                task = new Task(name, user);
                 taskRepository.save(task);
             }
         } catch (Exception e) {
@@ -147,12 +146,11 @@ public class TaskController {
 
             if (task == null) {
                 isNewTask = true;
-                task = new Task(name);
-                task.setUser(user);
+                task = new Task(name, user);
                 taskRepository.save(task);
             }
 
-            entry = new Entry(task);
+            entry = new Entry(task, user);
             entryRepository.save(entry);
 
         } catch (Exception e) {
@@ -173,38 +171,6 @@ public class TaskController {
             //@formatter:on
         }
 
-        return sb.toString();
-    }
-
-    //TODO: decide if this belongs here or only in EntryController
-    @RequestMapping("/{id}/stop")
-    @ResponseBody
-    public String stopTask(@PathVariable Long id) {
-        StringBuilder sb = new StringBuilder();
-        User user = UserService.getCurrentUser(userRepository);
-        Entry entry = null;
-
-        try {
-            entry = entryRepository.findOne(id);
-            if (!entry.getUser().equals(user)) {
-                entry = null; // prevent stopping another user's entry
-            }
-        } catch (Exception e) {
-            //TODO: handle exception
-        }
-
-        if (entry != null) {
-            //@formatter:off
-            sb.append("Stopped entry with id '").append(id).append("'")
-                .append(" for task named '").append(entry.getTask().getName()).append("'")
-                .append(" for user [").append(user).append("]");
-            //@formatter:on
-        } else {
-            //@formatter:off
-            sb.append("Could not stop entry with id '").append(id).append("'")
-                .append(" for user [").append(user).append("]");
-            //@formatter:on
-        }
         return sb.toString();
     }
 

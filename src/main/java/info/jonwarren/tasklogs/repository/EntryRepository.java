@@ -14,12 +14,12 @@ import info.jonwarren.tasklogs.model.User;
 @Transactional
 public interface EntryRepository extends CrudRepository<Entry, Long> {
 
-    public List<Entry> findAllByTask(Task task);
-
-    public List<Entry> findAllByStartTime(Instant startTime);
-
-    public List<Entry> findAllByStopTime(Instant stopTime);
-
     public List<Entry> findAllByUser(User user);
+
+    public List<Entry> findAllByTaskAndUser(Task task, User user);
+
+    public List<Entry> findAllByStartTimeAndUser(Instant startTime, User user);
+
+    public List<Entry> findAllByStopTimeAndUser(Instant stopTime, User user);
 
 }

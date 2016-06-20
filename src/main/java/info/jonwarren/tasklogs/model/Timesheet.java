@@ -37,6 +37,7 @@ public class Timesheet {
     @Column(name = "nonbillable_total")
     private Double nonbillableTotal;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -48,10 +49,11 @@ public class Timesheet {
         setId(id);
     }
 
-    public Timesheet(LocalDate endDate, Double billableTotal, Double nonbillableTotal) {
+    public Timesheet(LocalDate endDate, Double billableTotal, Double nonbillableTotal, User user) {
         setEndDate(endDate);
         setBillableTotal(nonbillableTotal);
         setNonbillableTotal(nonbillableTotal);
+        setUser(user);
     }
 
     public Long getId() {

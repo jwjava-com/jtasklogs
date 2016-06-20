@@ -12,11 +12,10 @@ import info.jonwarren.tasklogs.model.User;
 @Transactional
 public interface TaskRepository extends CrudRepository<Task, Long> {
 
-    // TODO: This will eventually cause issues if multiple users exist with the same task names
-    public Task findByName(String name);
-
-    public List<Task> findAllByIsBillable(Boolean isBillable);
-
     public List<Task> findAllByUser(User user);
+
+    public Task findByNameAndUser(String name, User user);
+
+    public List<Task> findAllByIsBillableAndUser(Boolean isBillable, User user);
 
 }

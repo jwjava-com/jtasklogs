@@ -26,6 +26,7 @@ public class Task {
     @Column(name = "is_billable")
     private Boolean isBillable;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -37,14 +38,16 @@ public class Task {
         setId(id);
     }
 
-    public Task(String name) {
+    public Task(String name, User user) {
         setName(name);
         setIsBillable(false);
+        setUser(user);
     }
 
-    public Task(String name, Boolean isBillable) {
+    public Task(String name, Boolean isBillable, User user) {
         setName(name);
         setIsBillable(isBillable);
+        setUser(user);
     }
 
     public Long getId() {

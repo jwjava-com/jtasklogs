@@ -14,12 +14,12 @@ import info.jonwarren.tasklogs.model.User;
 @Transactional
 public interface TaskTotalDayRepository extends CrudRepository<TaskTotalDay, Long> {
 
-    public TaskTotalDay findByDate(LocalDate date);
-
-    public List<TaskTotalDay> findAllByTask(Task task);
-
     public List<TaskTotalDay> findAllByUser(User user);
 
-    public List<TaskTotalDay> findAllByDate(LocalDate date);
+    public List<TaskTotalDay> findByDateAndUser(LocalDate date, User user);
+
+    public List<TaskTotalDay> findAllByTaskAndUser(Task task, User user);
+
+    public List<TaskTotalDay> findAllByDateAndUser(LocalDate date, User user);
 
 }

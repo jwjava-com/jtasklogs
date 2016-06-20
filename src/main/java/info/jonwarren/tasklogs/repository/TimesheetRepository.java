@@ -13,10 +13,10 @@ import info.jonwarren.tasklogs.model.User;
 @Transactional
 public interface TimesheetRepository extends CrudRepository<Timesheet, Long> {
 
-    public Timesheet findByEndDate(LocalDate date);
-
     public List<Timesheet> findAllByUser(User user);
 
-    public List<Timesheet> findAllByEndDate(LocalDate endDate);
+    public List<Timesheet> findByEndDateAndUser(LocalDate date, User user);
+
+    public List<Timesheet> findAllByEndDateAndUser(LocalDate endDate, User user);
 
 }

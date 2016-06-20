@@ -13,8 +13,8 @@ public interface UserDayRepository extends CrudRepository<UserDay, Long> {
 
     public List<UserDay> findAllByUser(User user);
 
-    public List<Entry> findAllByStartTime(Instant startTime);
+    public List<Entry> findAllByStopTimeAndUser(Instant stopTime, User user);
 
-    public List<Entry> findAllByStopTime(Instant stopTime);
+    public List<Entry> findAllByStartTimeAndUser(Instant startTime, User user);
 
 }

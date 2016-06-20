@@ -32,6 +32,7 @@ public class Entry {
     @Column(name = "stop_ts")
     private Instant stopTime;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -43,14 +44,16 @@ public class Entry {
         setId(id);
     }
 
-    public Entry(Task task) {
+    public Entry(Task task, User user) {
         setTask(task);
         setStartTime(Instant.now());
+        setUser(user);
     }
 
-    public Entry(Task task, Instant startTime) {
+    public Entry(Task task, Instant startTime, User user) {
         setTask(task);
         setStartTime(startTime);
+        setUser(user);
     }
 
     public Long getId() {

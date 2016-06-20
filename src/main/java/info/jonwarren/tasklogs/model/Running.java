@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "running_entries")
@@ -21,10 +22,19 @@ public class Running {
     @JoinColumn(name = "entry_id")
     private Entry entry;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "entry_user")
     private User user;
 
+    public Running() {
+    }
+    
+    public Running(Entry entry, User user) {
+        setEntry(entry);
+        setUser(user);
+    }
+    
     public Long getId() {
         return id;
     }

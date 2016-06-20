@@ -32,6 +32,7 @@ public class TaskTotalDay {
     @NotNull
     private Double total;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -43,10 +44,11 @@ public class TaskTotalDay {
         setId(id);
     }
 
-    TaskTotalDay(LocalDate date, Task task, Double total) {
+    TaskTotalDay(LocalDate date, Task task, Double total, User user) {
         setDate(date);
         setTask(task);
         setTotal(total);
+        setUser(user);
     }
 
     public Long getId() {

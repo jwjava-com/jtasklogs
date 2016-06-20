@@ -35,6 +35,7 @@ public class TaskTotalWeek {
     @NotNull
     private Double total;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -46,18 +47,20 @@ public class TaskTotalWeek {
         setId(id);
     }
 
-    public TaskTotalWeek(LocalDate endDate, Task task, Double total) {
+    public TaskTotalWeek(LocalDate endDate, Task task, Double total, User user) {
         setStartDate(endDate.minusDays(7));
         setEndDate(endDate);
         setTask(task);
         setTotal(total);
+        setUser(user);
     }
 
-    public TaskTotalWeek(LocalDate startDate, LocalDate endDate, Task task, Double total) {
+    public TaskTotalWeek(LocalDate startDate, LocalDate endDate, Task task, Double total, User user) {
         setStartDate(startDate);
         setEndDate(endDate);
         setTask(task);
         setTotal(total);
+        setUser(user);
     }
 
     public Long getId() {
