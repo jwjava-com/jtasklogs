@@ -68,5 +68,130 @@
     "name": "prod.database.password",
     "type": "java.lang.String",
     "description": "database password"
+  },
+  {
+    "name": "facebook.client.client-id",
+    "type": "java.lang.String",
+    "description": "A description for 'facebook.client.client-id'"
+  },
+  {
+    "name": "facebook.client.client-secret",
+    "type": "java.lang.String",
+    "description": "A description for 'facebook.client.client-secret'"
+  },
+  {
+    "name": "facebook.client.access-token-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'facebook.client.access-token-uri'"
+  },
+  {
+    "name": "facebook.client.user-authorization-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'facebook.client.user-authorization-uri'"
+  },
+  {
+    "name": "facebook.client.authentication-scheme",
+    "type": "java.lang.String",
+    "description": "A description for 'facebook.client.authentication-scheme'"
+  },
+  {
+    "name": "facebook.client.token-name",
+    "type": "java.lang.String",
+    "description": "A description for 'facebook.client.token-name'"
+  },
+  {
+    "name": "facebook.client.client-authentication-scheme",
+    "type": "java.lang.String",
+    "description": "A description for 'facebook.client.client-authentication-scheme'"
+  },
+  {
+    "name": "facebook.client.registered-redirect-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'facebook.client.registered-redirect-uri'"
+  },
+  {
+    "name": "facebook.resource.user-info-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'facebook.resource.user-info-uri'"
+  },
+  {
+    "name": "twitter.client.client-id",
+    "type": "java.lang.String",
+    "description": "A description for 'twitter.client.client-id'"
+  },
+  {
+    "name": "twitter.client.client-secret",
+    "type": "java.lang.String",
+    "description": "A description for 'twitter.client.client-secret'"
+  },
+  {
+    "name": "twitter.client.user-authorization-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'twitter.client.user-authorization-uri'"
+  },
+  {
+    "name": "twitter.client.authentication-scheme",
+    "type": "java.lang.String",
+    "description": "A description for 'twitter.client.authentication-scheme'"
+  },
+  {
+    "name": "twitter.client.token-name",
+    "type": "java.lang.String",
+    "description": "A description for 'twitter.client.token-name'"
+  },
+  {
+    "name": "twitter.client.access-token-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'twitter.client.access-token-uri'"
+  },
+  {
+    "name": "twitter.client.client-authentication-scheme",
+    "type": "java.lang.String",
+    "description": "A description for 'twitter.client.client-authentication-scheme'"
+  },
+  {
+    "name": "twitter.client.registered-redirect-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'twitter.client.registered-redirect-uri'"
+  },
+  {
+    "name": "twitter.resource.user-info-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'twitter.resource.user-info-uri'"
+  },
+  {
+    "name": "github.client.client-id",
+    "type": "java.lang.String",
+    "description": "A description for 'github.client.client-id'"
+  },
+  {
+    "name": "github.client.client-secret",
+    "type": "java.lang.String",
+    "description": "A description for 'github.client.client-secret'"
+  },
+  {
+    "name": "github.client.access-token-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'github.client.access-token-uri'"
+  },
+  {
+    "name": "github.client.user-authorization-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'github.client.user-authorization-uri'"
+  },
+  {
+    "name": "github.client.client-authentication-scheme",
+    "type": "java.lang.String",
+    "description": "A description for 'github.client.client-authentication-scheme'"
+  },
+  {
+    "name": "github.client.registered-redirect-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'github.client.registered-redirect-uri'"
+  },
+  {
+    "name": "github.resource.user-info-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'github.resource.user-info-uri'"
   }
 ]}
